@@ -51,14 +51,14 @@ float delta_x(float x1,float x2, float L)
 }
 
 ///////////////////
-int imprimirMat(float *red, int n,int m)
+int imprimirMat(double *red, int n,int m)
     {
         int k, l;
         for (k=0; k<n; k++)
 	{
             for(l=0; l<m; l++)
             {
-		printf("%f ", *(red+m*k+l));
+		printf("%d ", *(red+m*k+l));
 		}
 	        printf("\n");
         }

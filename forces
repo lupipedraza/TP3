@@ -1,0 +1,39 @@
+//////////////////////////
+
+double tabla_fz_pot (int *X, int L, int N)
+{float r_c = 2.5 //radio de corte
+float eps=1.0;
+float sigma=1.0;
+double F_r;
+double U;
+double *tabla_fz_pot
+tabla_fz_pot=(double *)malloc(N*3*sizeof(int));
+
+for (int i =0; i< 3*N; i++){
+  double posicion_i_x= *(X+3*i); //Posiciones para la particula i
+  double posicion_i_y= *(X+1*i);
+  double posicion_i_z= *(X+2*i);
+    for (int j=0; j<3*N; j++){
+      double posicion_j_x= *(X+3*j);//Posiciones para la particula j
+      double posicion_j_y= *(X+1*j);
+      double posicion_j_z= *(X+2*j);
+
+      double r_2=pow(posicion_i_x-posicion_j_x,2)+ //calculo el radio ij
+      pow(posicion_i_y-posicion_j_y,2)+
+      pow(posicion_i_z-posicion_j_z,2);
+
+
+      if (r_2 < r_c): //calculo la fuerza si esta dentro del radio
+        {
+        U=4*eps*[2*pow(sigma/r_2,6)-pow(sigma/r_2,3)]/sigma;
+        F_r=24*eps*[2*pow(sigma/r_2,7)-pow(sigma/r_2,4)]/sigma;
+        fr=F_r;
+        }
+        *(tabla_fz_pot+(3*i))=r; //guardo el radio
+        *(tabla_fz_pot+(1+(3*i)))=fr; //guardo la fuerza
+        *(tabla_fz_pot+(2+(3*i)))=U; //guardo el potencial
+      }
+    }
+//free(tabla_fz_pot) //no se si liberar el malloc, creo que no
+return 0;
+}
