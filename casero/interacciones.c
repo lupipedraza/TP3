@@ -96,14 +96,14 @@ return u_nueva;
 
 ////////////////////////
 
-double fuerzas (double *x, double *f, float L,  int N,int n,double *tabla_fz_pot)
+double fuerzas (double *x, double *f, float L,  int N,int n,double *tabla_fz_pot, double *p)
 {
 double U=0;
 double r_2;
 double deltax,deltay,deltaz;
 double F_mod=0;
 double r_c=2.5;
-
+*p=(double)N/(L*L*L);
 //seteo en 0 las fuerzas
 for(int k=0;k<3*N;k++)
 {
@@ -135,6 +135,7 @@ for (int i =0; i< N; i++){
     	*(f+3*j) -= deltax*F_mod;
       *(f+(3*j)+1) -= deltay*F_mod;
       *(f+(3*j)+2) -= deltaz*F_mod;
+	*p+=F_mod*r_2/(3*L*L*L);
     	}
      }
    }
@@ -174,4 +175,11 @@ for (int i =0; i< N; i++){
       }
    }
 return 0;
+}
+
+double rescaling(double *v, double Ttarget,double Tactual,int N)
+{
+	double lambda=pow(Ttarget/Tactual,1.0/2.0);
+	for(int i=0;i<3*N;i++)
+	*(v+i)=*(v+i)*lambda;	 
 }

@@ -8,7 +8,7 @@
 
 int armado_tabla (int n, double *tabla_fz_pot);
 double interpolar (int n, double r_2, double *tabla_fz_pot, double * F_mod);
-double fuerzas (double *x, double *f, float L,  int N,int n,double *tabla_fz_pot);
+double fuerzas (double *x, double *f, float L,  int N,int n,double *tabla_fz_pot, double *p);
 double presiones (double *x, double *f, float L,  int N,int n, double p,double *tabla_fz_pot);
-
+double rescaling(double *v, double Ttarget,double Tactual,int N);
 #endif

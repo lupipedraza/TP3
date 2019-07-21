@@ -47,12 +47,12 @@ int apply_PBC(double *x,float L, int N)
 
 
 
-double verlet(double *x, double *v, double *f, float L, int N,int n,	double *tabla_fz_pot, float h)
+double verlet(double *x, double *v, double *f, float L, int N,int n,	double *tabla_fz_pot, float h,double *p)
 {
 	double U_n=0;
 	first_step(x, v, f, N,h);
 	apply_PBC(x,L,N);
-	U_n=fuerzas (x, f, L, N, n,tabla_fz_pot);
+	U_n=fuerzas (x, f, L, N, n,tabla_fz_pot, p);
 
 	second_step(v, f, N,h);
 	return U_n;
